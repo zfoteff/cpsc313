@@ -1,4 +1,2 @@
-word word word word
+word word word word word
 words
-science
-cheese

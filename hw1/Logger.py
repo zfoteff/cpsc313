@@ -25,17 +25,9 @@ def log_setup(logger_name, log_file, mode='w'):
         new_log.addHandler(stream_handler)
         return new_log
 
-class DefaultLogger():
+class Logger():
     def __init__(self, log="debug", assignment="none"):
-        self.log_obj = log_setup(f"{assignment}", LOG_DIR+f"{assignment}"+f"{log}.log")
+        self.log_obj = log_setup(f"{assignment}{log}", LOG_DIR+f"{assignment}{log}.log")
         
     def log(self, logStr):
         self.log_obj.info(logStr)
-
-class MapReduceLogger(DefaultLogger):
-    def __init__(self):
-        super().__init__("MapReduceLogger", assignment="hw1")
-        
-class TestLogger(DefaultLogger):
-    def __init__(self, assignment="none"):
-        super().__init__("testing", assignment)

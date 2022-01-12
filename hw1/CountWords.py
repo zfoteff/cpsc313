@@ -7,11 +7,11 @@ __version__ = '0.1'
 __author__ = 'Zac Foteff'
 
 import time
-from Loggers import MapReduceLogger
+from Logger import Logger
 
-logger = MapReduceLogger()
+logger = Logger("main", "hw1")
 
-FILEPATH = "word_lists/"
+FILEPATH = "mock_lists/"
 
 STOP_WORDS = [
     'a', 'an', 'and', 'are', 'as', 'be', 'by', 
@@ -30,7 +30,7 @@ def countWords(file_name):
     
     #   Load file and start timer
     file = open(f"{file_name}", "r")
-    start_time = time.process_time()
+    start_time = time.time()
     
     words = file.read()
     if words == '':
@@ -48,10 +48,10 @@ def countWords(file_name):
             word_list[word] = word_list[word] + 1
 
     #   Kill timing and close file
-    elapsed_time = time.process_time() - start_time
+    elapsed_time = time.time() - start_time
     file.close()
     
-    logger.log(f"\n\tWordlist: {word_list}\n\tElapsed Time: {elapsed_time}")
+    logger.log(f"\n\tWordlist: {word_list}\n\tElapsed Time: {elapsed_time:.5f}")
     return word_list
     
 def main(*args, **kwargs):

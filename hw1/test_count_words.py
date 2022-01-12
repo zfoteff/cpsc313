@@ -5,21 +5,31 @@ __version__ = '0.1'
 __author__ = 'Zac Foteff'
 
 import time
-from Loggers import TestLogger
+from Logger import Logger
 from CountWords import countWords
-logger = TestLogger("hw1")
-
-TEST_FILES = [
-    'single_word.txt', 'long_word.txt', 'alpha.txt', 
-    '500_words.txt', 'every_paragraph.txt', 'empty.txt'
-]
+logger = Logger("test", "hw1")
 
 EXPECTED_OUTPUTS = {
     'empty.txt': 0,
     'single_word.txt': 1,
     'long_word.txt': 1,
     '500_words.txt': 500,
-    'every_paragraph': 10
+    'every_paragraph': 10,
+    'duplicates.txt': 2,
+    'alt_spelling.txt': 1
+}
+
+EXPECTED_DENSITY = {
+    'single_word.txt': {
+        'ZAC': 1
+    },
+    'duplicates.txt': {
+        'WORDS': 1,
+        'WORD': 5
+    }, 
+    'alt_spelling.txt': {
+        'WORD': 7
+    }
 }
 
 def getDictSum(word_list):
@@ -29,42 +39,41 @@ def test_empty_file():
     """ Test that an empty file returns 0 words
     """
     test_file = "empty.txt"
-    start_time = time.process_time()
+    start_time = time.time()
     word_list = countWords(f"mock_lists/{test_file}")
     assert getDictSum(word_list) == EXPECTED_OUTPUTS[test_file]
-    elapsed_time = time.process_time() - start_time
-    logger.log(f"Completed empty file test in {elapsed_time} seconds")
-
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed empty file test in {elapsed_time:.5f} seconds")
     
 def test_single_word():
     """ Test that a single word returns 1 word
     """
     test_file = "single_word.txt"
-    start_time = time.process_time()
+    start_time = time.time()
     word_list = countWords(f"mock_lists/{test_file}")
     assert getDictSum(word_list) == EXPECTED_OUTPUTS[test_file]
-    elapsed_time = time.process_time() - start_time
-    logger.log(f"Completed single word test in {elapsed_time} seconds")
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed single word test in {elapsed_time:.5f} seconds")
 
 def test_long_word():
     """ Test that an abnormally long word returns 1 word
     """
     test_file = "long_word.txt"
-    start_time = time.process_time()
+    start_time = time.time()
     word_list = countWords(f"mock_lists/{test_file}")
     assert getDictSum(word_list) == EXPECTED_OUTPUTS[test_file]
-    elapsed_time = time.process_time() - start_time
-    logger.log(f"Completed long word test in {elapsed_time} seconds")
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed long word test in {elapsed_time:.5f} seconds")
 
 def test_500_words_file():
     """ Test that a file with 500 words returns 500 words
     """
     test_file = "500_words.txt"
-    start_time = time.process_time()
+    start_time = time.time()
     word_list = countWords(f"mock_lists/{test_file}")
     assert getDictSum(word_list) == EXPECTED_OUTPUTS[test_file]
-    elapsed_time = time.process_time() - start_time
-    logger.log(f"Completed 500 words test in {elapsed_time} seconds")
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed 500 words test in {elapsed_time:.5f} seconds")
 
 def test_same_expected_output():
     """ 
@@ -72,11 +81,34 @@ def test_same_expected_output():
     on an file with an unknown amount of words
     """
     test_file = "alpha.txt"
-    start_time = time.process_time()
+    start_time = time.time()
     word_list_1 = countWords(f"mock_lists/{test_file}")
     word_list_1_count = getDictSum(word_list_1)
     word_list_2 = countWords(f"mock_lists/{test_file}")
     word_list_2_count = getDictSum(word_list_2)
     assert word_list_1_count == word_list_2_count
-    elapsed_time = time.process_time() - start_time
-    logger.log(f"Completed same expected output test in {elapsed_time} seconds")
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed same expected output test in {elapsed_time:.5f} seconds")
+    
+def test_expected_density(): 
+    """
+    Test that the count_words function outputs a list of words with the correct amount of 
+    occurences 
+    """
+    test_files = ['single_word.txt', 'duplicates.txt', 'alt_spelling.txt']
+    start_time = time.time()
+    
+    for test in test_files:
+        #   Iterate through all test file examples
+        word_list = countWords(f"mock_lists/{test}")
+        list_keys = word_list.keys()
+        
+        for key in list_keys:
+            """
+            Use each key in the compiled list of words, and check that the compiled 
+            density matches the expected density
+            """
+            assert word_list[key] == EXPECTED_DENSITY[test][key]
+        
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed expected density test in {elapsed_time:.5f} seconds")
