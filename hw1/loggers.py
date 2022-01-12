@@ -14,7 +14,7 @@ def log_setup(logger_name, log_file, mode='w'):
         """
         #   Initialize handlers
         new_log = log.getLogger(logger_name)
-        formatter = log.Formatter("[%(asctime)s] | %(message)s")
+        formatter = log.Formatter("[%(asctime)s] %(message)s")
         file_handler = log.FileHandler(log_file, mode=mode)
         file_handler.setFormatter(formatter)
         stream_handler = log.StreamHandler()

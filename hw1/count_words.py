@@ -5,4 +5,5 @@ __version__ = '0.1'
 __author__ = 'Zac Foteff'
 
 import io
-from loggers import MapReduceLogger
+from Loggers import MapReduceLogger
+

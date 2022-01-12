@@ -1,2 +1,8 @@
 /.vscode/
+
+# HW1 gitignore
 /hw1/logs/
+/hw1/__pycache__/
+/hw1/.pytest_cache/
+/hw1/.vscode
+/hw1/*.pdf
