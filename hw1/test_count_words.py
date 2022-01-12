@@ -7,6 +7,7 @@ __author__ = 'Zac Foteff'
 import time
 from Logger import Logger
 from CountWords import countWords
+
 logger = Logger("test", "hw1")
 
 EXPECTED_OUTPUTS = {
