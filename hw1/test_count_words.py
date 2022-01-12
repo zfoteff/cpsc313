@@ -33,6 +33,14 @@ EXPECTED_DENSITY = {
 }
 
 def getDictSum(word_list):
+    """ Get sum of all words in the word list dictionary
+
+    Args:
+        word_list (dict): Dictionary of words and their frequency in the file
+
+    Returns:
+        int: Total number of words in the file
+    """
     return sum(word_list.values())
 
 def test_empty_file():
@@ -75,6 +83,26 @@ def test_500_words_file():
     elapsed_time = time.time() - start_time
     logger.log(f"Completed 500 words test in {elapsed_time:.5f} seconds")
 
+def test_duplicate_words():
+    """ Test that duplicates of the same word are counted properly
+    """
+    test_file = "duplicates.txt"
+    start_time = time.time()
+    word_list = countWords(f"mock_lists/{test_file}")
+    assert len(word_list) == EXPECTED_OUTPUTS[test_file]
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed duplicate words test in {elapsed_time:.5f} seconds")
+
+def test_alt_spelling():
+    """ Test that alternate spellings of the same word are counted properly
+    """
+    test_file = "alt_spelling.txt"
+    start_time = time.time()
+    word_list = countWords(f"mock_lists/{test_file}")
+    assert len(word_list) == EXPECTED_OUTPUTS[test_file]
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed alternate spelling test in {elapsed_time:.5f} seconds")
+
 def test_same_expected_output():
     """ 
     Test that a 2 instances of the count_words function returns the same amount of words
@@ -89,7 +117,7 @@ def test_same_expected_output():
     assert word_list_1_count == word_list_2_count
     elapsed_time = time.time() - start_time
     logger.log(f"Completed same expected output test in {elapsed_time:.5f} seconds")
-    
+  
 def test_expected_density(): 
     """
     Test that the count_words function outputs a list of words with the correct amount of 
