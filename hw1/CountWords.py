@@ -6,6 +6,7 @@ printing out the list of words with their corresponding counts
 __version__ = '0.1'
 __author__ = 'Zac Foteff'
 
+import os
 import time
 from Logger import Logger
 
@@ -59,7 +60,23 @@ def main(*args, **kwargs):
     Main method to get files from import or command line args. Iterates through 
     all files, counts the words, the combines the results from each
     """
-    countWords(FILEPATH+"alpha.txt")
+    
+    total_words = {}
+    if len(args) > 0:
+        #   Get filenames from command line arguments and count the words in them
+        for filename in args:
+            total_words.update(countWords(filename))
+            
+        print(total_words)
+            
+            
+    else: 
+        #   Get filenames of mock wordlists and count the words in them
+        directory_files = os.listdir(os.getcwd()+"\\mock_lists")
+        for filename in directory_files:
+            total_words.update(countWords(os.getcwd()+"\\mock_lists\\"+filename))
+            
+        print(total_words)
     
 if __name__ == '__main__':
     main()
