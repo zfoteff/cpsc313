@@ -1,7 +1,7 @@
 """ Main file for testing the HW1 implementation
 """
 
-__version__ = '0.1'
+__version__ = '1.1'
 __author__ = 'Zac Foteff'
 
 import time

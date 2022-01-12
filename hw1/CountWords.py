@@ -3,7 +3,7 @@ Program takes a list of files as input and counts all the words in the list of f
 printing out the list of words with their corresponding counts
 """
 
-__version__ = '0.1'
+__version__ = '1.1'
 __author__ = 'Zac Foteff'
 
 import os
