@@ -6,7 +6,6 @@ printing out the list of words with their corresponding counts
 __version__ = '0.1'
 __author__ = 'Zac Foteff'
 
-import io
 import time
 from Loggers import MapReduceLogger
 
@@ -43,7 +42,7 @@ def countWords(file_name):
     words = words.upper().replace("\n", " ").split(" ")
     word_list = {}
     for word in words:
-        if word not in word_list or len(word_list) == 0:
+        if word not in word_list.keys():
             word_list[word] = 1
         else:
             word_list[word] = word_list[word] + 1
@@ -55,7 +54,7 @@ def countWords(file_name):
     logger.log(f"\n\tWordlist: {word_list}\n\tElapsed Time: {elapsed_time}")
     return word_list
     
-def main():
+def main(*args, **kwargs):
     """ 
     Main method to get files from import or command line args. Iterates through 
     all files, counts the words, the combines the results from each
