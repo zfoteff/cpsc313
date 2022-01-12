@@ -4,9 +4,9 @@
 __version__ = '0.1'
 __author__ = 'Zac Foteff'
 
-import io
+import time
 from Loggers import TestLogger
-
+from CountWords import countWords
 logger = TestLogger("hw1")
 
 TEST_FILES = [
@@ -25,17 +25,30 @@ EXPECTED_OUTPUTS = {
 def test_empty_file():
     """ Test that an empty file returns 0 words
     """
-    pass
+    test_file = "empty_file.txt"
+    start_time = time.process_time()
+    word_list = countWords(f"mock_lists/{test_file}")
+    assert len(word_list) == EXPECTED_OUTPUTS[test_file]
+    elapsed_time = time.process_time() - start_time
+    logger.log(f"Completed long word test in {elapsed_time} seconds")
+
     
 def test_single_word():
     """ Test that a single word returns 1 word
     """
-    pass
+    test_file = "single_word.txt"
+    start_time = time.process_time()
+    word_list = countWords(f"mock_lists/{test_file}")
+    assert len(word_list) == EXPECTED_OUTPUTS[test_file]
+    elapsed_time = time.process_time() - start_time
+    logger.log(f"Completed single word test in {elapsed_time} seconds")
 
 def test_long_word():
     """ Test that an abnormally long word returns 1 word
     """
-    pass
+    start_time = time.process_time()
+    elapsed_time = time.process_time() - start_time
+    logger.log(f"Completed long word test in {elapsed_time} seconds")
 
 def test_500_words_file():
     """ Test that a file with 500 words returns 500 words
