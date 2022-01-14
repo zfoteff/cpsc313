@@ -7,17 +7,18 @@ __version__ = '1.1'
 __author__ = 'Zac Foteff'
 
 import os
+import sys
 import time
 from Logger import Logger
 
 logger = Logger("main", "hw1")
 
-FILEPATH = "mock_lists/"
+FILE_PATH = "\\word_lists\\"
 
 STOP_WORDS = [
-    'a', 'an', 'and', 'are', 'as', 'be', 'by', 
-    'for', 'if', 'in', 'is', 'it',  'of', 'or', 
-    'py', 'rst', 'that', 'the', 'to', 'with'
+    'A', 'AN', 'AND', 'ARE', 'AS', 'BE', 'BY', 
+    'FOR', 'IF', 'IN', 'IS', 'IT',  'OF', 'OR', 
+    'PY', 'RST', 'THAT', 'THE', 'TO', 'WITH'
 ]
 
 def countWords(file_name):
@@ -31,7 +32,6 @@ def countWords(file_name):
     
     #   Load file and start timer
     file = open(f"{file_name}", "r")
-    start_time = time.time()
     
     words = file.read()
     if words == '':
@@ -42,17 +42,21 @@ def countWords(file_name):
     #   delimited by the " " space character
     words = words.upper().replace("\n", " ").split(" ")
     word_list = {}
+    
+    #   Start timing and count the words in the file
+    start_time = time.time()
     for word in words:
-        if word not in word_list.keys():
-            word_list[word] = 1
-        else:
-            word_list[word] = word_list[word] + 1
+        if word not in STOP_WORDS:
+            if word not in word_list.keys(): 
+                word_list[word] = 1
+            else:
+                word_list[word] = word_list[word] + 1
 
     #   Kill timing and close file
     elapsed_time = time.time() - start_time
     file.close()
     
-    logger.log(f"\n\tWordlist: {word_list}\n\tElapsed Time: {elapsed_time:.5f}")
+    logger.log(f"\n\tFile: {file_name}\n\tElapsed Time: {elapsed_time:.5f}\n\tUnique words: {len(word_list.keys())}\n\tTotal words: {sum(word_list.values())}")
     return word_list
     
 def main(*args, **kwargs):
@@ -60,23 +64,27 @@ def main(*args, **kwargs):
     Main method to get files from import or command line args. Iterates through 
     all files, counts the words, the combines the results from each
     """
-    
     total_words = {}
-    if len(args) > 0:
+    start_time = time.time()
+    
+    inputtedFiles = sys.argv[1:]
+    
+    if inputtedFiles is not []:
         #   Get filenames from command line arguments and count the words in them
-        for filename in args:
-            total_words.update(countWords(filename))
-            
-        print(total_words)
-            
+        for filepath in inputtedFiles:
+            total_words.update(countWords(f"{filepath}"))
             
     else: 
-        #   Get filenames of mock wordlists and count the words in them
-        directory_files = os.listdir(os.getcwd()+"\\mock_lists")
+        #   Get files from wordlist directory and count the words in them
+        print("Running all files in wordlist directory")
+        directory_files = os.listdir(os.getcwd()+FILE_PATH)
         for filename in directory_files:
-            total_words.update(countWords(os.getcwd()+"\\mock_lists\\"+filename))
+            #   Merge resuling dict with existing
+            total_words.update(countWords(os.getcwd()+FILE_PATH+filename))
             
-        print(total_words)
+    #   Report final timing and results
+    elapsed_time = time.time() - start_time;
+    logger.log(f"\n\tFile iteration complete:\n\t____________________________\n\tTotal elapsed time: {elapsed_time:.5f}\n\t Total Unique words: {len(total_words.keys())}\n\t Total words: {sum(total_words.values())}")
     
 if __name__ == '__main__':
     main()
