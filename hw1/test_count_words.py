@@ -18,7 +18,8 @@ EXPECTED_OUTPUTS = {
     'every_paragraph': 10,
     'duplicates.txt': 2,
     'alt_spelling.txt': 1,
-    'ignored.txt': 0
+    'ignored.txt': 0,
+    'large_list.txt': 370085
 }
 
 EXPECTED_DENSITY = {
@@ -153,3 +154,14 @@ def test_ignore_all_conjunctions():
     assert len(word_list) == EXPECTED_OUTPUTS[test_file]
     elapsed_time = time.time() - start_time
     logger.log(f"Completed ignore all conjunctions test in {elapsed_time:.5f} seconds")
+    
+def test_large_wordlist():
+    """
+    Test that program behaves as expected when encountering extremely large files
+    """
+    test_file = 'large_list.txt'
+    start_time = time.time()
+    word_list = countWords(f"mock_lists/{test_file}")
+    assert len(word_list) == EXPECTED_OUTPUTS[test_file]
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed large file test in {elapsed_time:.5f} seconds")

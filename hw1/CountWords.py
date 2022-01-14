@@ -55,7 +55,7 @@ def countWords(file_name):
     elapsed_time = time.time() - start_time
     file.close()
     
-    logger.log(f"\n\tWordlist: {word_list}\n\tElapsed Time: {elapsed_time:.5f}\n\tUnique words: {len(word_list.keys())}\n\tTotal words: {sum(word_list.values())}")
+    logger.log(f"\n\tFile: {file_name}\n\tElapsed Time: {elapsed_time:.5f}\n\tUnique words: {len(word_list.keys())}\n\tTotal words: {sum(word_list.values())}")
     return word_list
     
 def main(*args, **kwargs):
@@ -65,20 +65,22 @@ def main(*args, **kwargs):
     """
     
     total_words = {}
+    start_time = time.time()
     if len(args) > 0:
         #   Get filenames from command line arguments and count the words in them
         for filename in args:
             total_words.update(countWords(filename))
             
-        print(total_words)
-            
     else: 
         #   Get filenames of mock wordlists and count the words in them
         directory_files = os.listdir(os.getcwd()+"\\mock_lists")
         for filename in directory_files:
+            #   Merge resuling dict with existing
             total_words.update(countWords(os.getcwd()+"\\mock_lists\\"+filename))
             
-        print(total_words)
+    #   Report final timing and results
+    elapsed_time = time.time() - start_time;
+    logger.log(f"\n\tFile iteration complete:\n\t____________________________\n\tTotal elapsed time: {elapsed_time:.5f}\n\t Total Unique words: {len(total_words.keys())}\n\t Total words: {sum(total_words.values())}")
     
 if __name__ == '__main__':
     main()
