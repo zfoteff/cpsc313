@@ -15,9 +15,9 @@ logger = Logger("main", "hw1")
 FILEPATH = "mock_lists/"
 
 STOP_WORDS = [
-    'a', 'an', 'and', 'are', 'as', 'be', 'by', 
-    'for', 'if', 'in', 'is', 'it',  'of', 'or', 
-    'py', 'rst', 'that', 'the', 'to', 'with'
+    'A', 'AN', 'AND', 'ARE', 'AS', 'BE', 'BY', 
+    'FOR', 'IF', 'IN', 'IS', 'IT',  'OF', 'OR', 
+    'PY', 'RST', 'THAT', 'THE', 'TO', 'WITH'
 ]
 
 def countWords(file_name):
@@ -31,7 +31,6 @@ def countWords(file_name):
     
     #   Load file and start timer
     file = open(f"{file_name}", "r")
-    start_time = time.time()
     
     words = file.read()
     if words == '':
@@ -42,17 +41,21 @@ def countWords(file_name):
     #   delimited by the " " space character
     words = words.upper().replace("\n", " ").split(" ")
     word_list = {}
+    
+    #   Start timing and count the words in the file
+    start_time = time.time()
     for word in words:
-        if word not in word_list.keys():
-            word_list[word] = 1
-        else:
-            word_list[word] = word_list[word] + 1
+        if word not in STOP_WORDS:
+            if word not in word_list.keys(): 
+                word_list[word] = 1
+            else:
+                word_list[word] = word_list[word] + 1
 
     #   Kill timing and close file
     elapsed_time = time.time() - start_time
     file.close()
     
-    logger.log(f"\n\tWordlist: {word_list}\n\tElapsed Time: {elapsed_time:.5f}")
+    logger.log(f"\n\tWordlist: {word_list}\n\tElapsed Time: {elapsed_time:.5f}\n\tUnique words: {len(word_list.keys())}\n\tTotal words: {sum(word_list.values())}")
     return word_list
     
 def main(*args, **kwargs):
@@ -68,7 +71,6 @@ def main(*args, **kwargs):
             total_words.update(countWords(filename))
             
         print(total_words)
-            
             
     else: 
         #   Get filenames of mock wordlists and count the words in them

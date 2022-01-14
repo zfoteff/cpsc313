@@ -17,13 +17,14 @@ EXPECTED_OUTPUTS = {
     '500_words.txt': 500,
     'every_paragraph': 10,
     'duplicates.txt': 2,
-    'alt_spelling.txt': 1
+    'alt_spelling.txt': 1,
+    'ignored.txt': 0
 }
 
 EXPECTED_DENSITY = {
     'single_word.txt': {
         'ZAC': 1
-    },
+},
     'duplicates.txt': {
         'WORDS': 1,
         'WORD': 5
@@ -33,7 +34,7 @@ EXPECTED_DENSITY = {
     }
 }
 
-def getDictSum(word_list):
+def getDictSum(word_list) -> int:
     """ Get sum of all words in the word list dictionary
 
     Args:
@@ -141,3 +142,14 @@ def test_expected_density():
         
     elapsed_time = time.time() - start_time
     logger.log(f"Completed expected density test in {elapsed_time:.5f} seconds")
+    
+def test_ignore_all_conjunctions():
+    """
+    Test that words included in the STOP_WORDS constant do not count to the wordlist
+    """
+    test_file = 'ignored.txt'
+    start_time = time.time()
+    word_list = countWords(f"mock_lists/{test_file}")
+    assert len(word_list) == EXPECTED_OUTPUTS[test_file]
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed ignore all conjunctions test in {elapsed_time:.5f} seconds")
