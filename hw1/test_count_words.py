@@ -10,6 +10,8 @@ from CountWords import countWords
 
 logger = Logger("test", "hw1")
 
+FILE_PATH = "word_lists"
+
 EXPECTED_OUTPUTS = {
     'empty.txt': 0,
     'single_word.txt': 1,
@@ -19,6 +21,7 @@ EXPECTED_OUTPUTS = {
     'duplicates.txt': 2,
     'alt_spelling.txt': 1,
     'ignored.txt': 0,
+    'mixed_ignored.txt': 5,
     'large_list.txt': 370085
 }
 
@@ -51,7 +54,7 @@ def test_empty_file():
     """
     test_file = "empty.txt"
     start_time = time.time()
-    word_list = countWords(f"mock_lists/{test_file}")
+    word_list = countWords(f"{FILE_PATH}/{test_file}")
     assert getDictSum(word_list) == EXPECTED_OUTPUTS[test_file]
     elapsed_time = time.time() - start_time
     logger.log(f"Completed empty file test in {elapsed_time:.5f} seconds")
@@ -61,7 +64,7 @@ def test_single_word():
     """
     test_file = "single_word.txt"
     start_time = time.time()
-    word_list = countWords(f"mock_lists/{test_file}")
+    word_list = countWords(f"{FILE_PATH}/{test_file}")
     assert getDictSum(word_list) == EXPECTED_OUTPUTS[test_file]
     elapsed_time = time.time() - start_time
     logger.log(f"Completed single word test in {elapsed_time:.5f} seconds")
@@ -71,7 +74,7 @@ def test_long_word():
     """
     test_file = "long_word.txt"
     start_time = time.time()
-    word_list = countWords(f"mock_lists/{test_file}")
+    word_list = countWords(f"{FILE_PATH}/{test_file}")
     assert getDictSum(word_list) == EXPECTED_OUTPUTS[test_file]
     elapsed_time = time.time() - start_time
     logger.log(f"Completed long word test in {elapsed_time:.5f} seconds")
@@ -81,7 +84,7 @@ def test_500_words_file():
     """
     test_file = "500_words.txt"
     start_time = time.time()
-    word_list = countWords(f"mock_lists/{test_file}")
+    word_list = countWords(f"{FILE_PATH}/{test_file}")
     assert getDictSum(word_list) == EXPECTED_OUTPUTS[test_file]
     elapsed_time = time.time() - start_time
     logger.log(f"Completed 500 words test in {elapsed_time:.5f} seconds")
@@ -91,7 +94,7 @@ def test_duplicate_words():
     """
     test_file = "duplicates.txt"
     start_time = time.time()
-    word_list = countWords(f"mock_lists/{test_file}")
+    word_list = countWords(f"{FILE_PATH}/{test_file}")
     assert len(word_list) == EXPECTED_OUTPUTS[test_file]
     elapsed_time = time.time() - start_time
     logger.log(f"Completed duplicate words test in {elapsed_time:.5f} seconds")
@@ -101,7 +104,7 @@ def test_alt_spelling():
     """
     test_file = "alt_spelling.txt"
     start_time = time.time()
-    word_list = countWords(f"mock_lists/{test_file}")
+    word_list = countWords(f"{FILE_PATH}/{test_file}")
     assert len(word_list) == EXPECTED_OUTPUTS[test_file]
     elapsed_time = time.time() - start_time
     logger.log(f"Completed alternate spelling test in {elapsed_time:.5f} seconds")
@@ -113,9 +116,9 @@ def test_same_expected_output():
     """
     test_file = "alpha.txt"
     start_time = time.time()
-    word_list_1 = countWords(f"mock_lists/{test_file}")
+    word_list_1 = countWords(f"{FILE_PATH}/{test_file}")
     word_list_1_count = getDictSum(word_list_1)
-    word_list_2 = countWords(f"mock_lists/{test_file}")
+    word_list_2 = countWords(f"{FILE_PATH}/{test_file}")
     word_list_2_count = getDictSum(word_list_2)
     assert word_list_1_count == word_list_2_count
     elapsed_time = time.time() - start_time
@@ -131,7 +134,7 @@ def test_expected_density():
     
     for test in test_files:
         #   Iterate through all test file examples
-        word_list = countWords(f"mock_lists/{test}")
+        word_list = countWords(f"{FILE_PATH}/{test}")
         list_keys = word_list.keys()
         
         for key in list_keys:
@@ -150,18 +153,31 @@ def test_ignore_all_conjunctions():
     """
     test_file = 'ignored.txt'
     start_time = time.time()
-    word_list = countWords(f"mock_lists/{test_file}")
+    word_list = countWords(f"{FILE_PATH}/{test_file}")
     assert len(word_list) == EXPECTED_OUTPUTS[test_file]
     elapsed_time = time.time() - start_time
     logger.log(f"Completed ignore all conjunctions test in {elapsed_time:.5f} seconds")
-    
+
+def test_ignore_mixed_conjunctions():
+    """
+    Test that words included in the STOP_WORDS constant do not count towards the wordlist when
+    mixed in with many other words
+    """
+    test_file = 'mixed_ignored.txt'
+    start_time = time.time()
+    start_time = time.time()
+    word_list = countWords(f"{FILE_PATH}/{test_file}")
+    assert len(word_list) == EXPECTED_OUTPUTS[test_file]
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed ignore all conjunctions test in {elapsed_time:.5f} seconds")
+
 def test_large_wordlist():
     """
-    Test that program behaves as expected when encountering extremely large files
+    Test that program behaves as expected when encountering large files
     """
     test_file = 'large_list.txt'
     start_time = time.time()
-    word_list = countWords(f"mock_lists/{test_file}")
+    word_list = countWords(f"{FILE_PATH}/{test_file}")
     assert len(word_list) == EXPECTED_OUTPUTS[test_file]
     elapsed_time = time.time() - start_time
     logger.log(f"Completed large file test in {elapsed_time:.5f} seconds")

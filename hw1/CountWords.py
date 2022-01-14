@@ -7,12 +7,13 @@ __version__ = '1.1'
 __author__ = 'Zac Foteff'
 
 import os
+import sys
 import time
 from Logger import Logger
 
 logger = Logger("main", "hw1")
 
-FILEPATH = "mock_lists/"
+FILE_PATH = "\\word_lists\\"
 
 STOP_WORDS = [
     'A', 'AN', 'AND', 'ARE', 'AS', 'BE', 'BY', 
@@ -63,20 +64,23 @@ def main(*args, **kwargs):
     Main method to get files from import or command line args. Iterates through 
     all files, counts the words, the combines the results from each
     """
-    
     total_words = {}
     start_time = time.time()
-    if len(args) > 0:
+    
+    inputtedFiles = sys.argv[1:]
+    
+    if inputtedFiles is not []:
         #   Get filenames from command line arguments and count the words in them
-        for filename in args:
-            total_words.update(countWords(filename))
+        for filepath in inputtedFiles:
+            total_words.update(countWords(f"{filepath}"))
             
     else: 
-        #   Get filenames of mock wordlists and count the words in them
-        directory_files = os.listdir(os.getcwd()+"\\mock_lists")
+        #   Get files from wordlist directory and count the words in them
+        print("Running all files in wordlist directory")
+        directory_files = os.listdir(os.getcwd()+FILE_PATH)
         for filename in directory_files:
             #   Merge resuling dict with existing
-            total_words.update(countWords(os.getcwd()+"\\mock_lists\\"+filename))
+            total_words.update(countWords(os.getcwd()+FILE_PATH+filename))
             
     #   Report final timing and results
     elapsed_time = time.time() - start_time;
