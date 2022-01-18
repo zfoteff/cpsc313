@@ -3,7 +3,7 @@ Program takes a list of files as input and counts all the words in the list of f
 printing out the list of words with their corresponding counts
 """
 
-__version__ = '1.1'
+__version__ = '1.3'
 __author__ = 'Zac Foteff'
 
 import os
@@ -65,12 +65,12 @@ def main(*args, **kwargs):
     all files, counts the words, the combines the results from each
     """
     total_words = {}
+    
+    #   Start timer
     start_time = time.time()
-    
-    inputtedFiles = sys.argv[1:]
-    
-    if inputtedFiles is not []:
+    if args != ():
         #   Get filenames from command line arguments and count the words in them
+        inputtedFiles = sys.argv[1:]
         for filepath in inputtedFiles:
             total_words.update(countWords(f"{filepath}"))
             
