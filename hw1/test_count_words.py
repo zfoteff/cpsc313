@@ -7,6 +7,7 @@ __author__ = 'Zac Foteff'
 import time
 from Logger import Logger
 from CountWords import countWords
+from CountWords import mergeResults
 
 logger = Logger("test", "hw1")
 
@@ -181,3 +182,132 @@ def test_large_wordlist():
     assert len(word_list) == EXPECTED_OUTPUTS[test_file]
     elapsed_time = time.time() - start_time
     logger.log(f"Completed large file test in {elapsed_time:.5f} seconds")
+    
+def test_merge_empty_results():
+    """
+    Test that merging empty word lists returns an empty result
+    """
+    test_file = "empty.txt"
+    start_time = time.time()
+    destination = countWords(f"{FILE_PATH}/{test_file}")
+    source = countWords(f"{FILE_PATH}/{test_file}")
+    mergeResults(destination, source)
+    assert destination == {}
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed merge empty results test in {elapsed_time:.5f} seconds")
+
+def test_merge_same_results():
+    """
+    Test that merging two equal files results in matching source and destination result sets
+    """
+    test_file = "alpha.txt"
+    start_time = time.time()
+    destination = countWords(f"{FILE_PATH}/{test_file}")
+    source = countWords(f"{FILE_PATH}/{test_file}")
+    mergeResults(destination, source)
+    assert len(destination) == len(source)
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed merge same results test in {elapsed_time:.5f} seconds")
+
+def test_merge_different_results():
+    """
+    Test that merging results with no shared words results in a destination set that is longer than
+    it was originally & its length is equal to the combined lengths of the source and destination
+    """
+    test_file_1 = "alpha.txt"
+    test_file_2 = "beta.txt"
+    start_time = time.time()
+    destination = countWords(f"{FILE_PATH}/{test_file_1}")
+    destination_copy = destination.copy()
+    source = countWords(f"{FILE_PATH}/{test_file_2}")
+    mergeResults(destination, source)
+    assert len(destination) > len(destination_copy)
+    assert len(destination) == len(source) + len(destination_copy)
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed merge different results test in {elapsed_time:.5f} seconds")
+    
+def test_merge_mixed_results():
+    """
+    Test that merging results with some shared words results in a result set that is bigger 
+    than it was originally, but smaller than the combined lengths of each input
+    """
+    test_file_1 = "mixed_1.txt"
+    test_file_2 = "mixed_2.txt"
+    start_time = time.time()
+    destination = countWords(f"{FILE_PATH}/{test_file_1}")
+    destination_length_before_merge = len(destination)
+    source = countWords(f"{FILE_PATH}/{test_file_2}")
+    mergeResults(destination, source)
+    assert len(destination) > destination_length_before_merge
+    assert len(destination) < len(source) + destination_length_before_merge
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed merge different results test in {elapsed_time:.5f} seconds")
+
+def test_merge_known_inputs():
+    """
+    Test that merging two input files with a known frequencies of the same word returns a result set
+    that has the same word with the word frequency = frequency(dest) + frequency(source)
+    """
+    test_file_1 = "merge_known_output_1.txt"
+    test_file_2 = "merge_known_output_2.txt"
+    start_time = time.time()
+    
+    destination = countWords(f"{FILE_PATH}/{test_file_1}")
+    assert destination['WORD'] == 1
+    
+    source = countWords(f"{FILE_PATH}/{test_file_2}")
+    assert source['WORD'] == 2
+    
+    mergeResults(destination, source)
+    assert destination['WORD'] == 3
+    
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed merge known outputs test in {elapsed_time:.5f} seconds")
+
+def test_deep_merge_comparison():
+    """
+    Test that each word in a result set is composed the correct amount of occurrances in the
+    destination file and the source file
+    """
+    test_file_1 = "mixed_1.txt"
+    test_file_2 = "mixed_2.txt"
+    start_time = time.time()
+    destination = countWords(f"{FILE_PATH}/{test_file_1}")
+    destination_copy = destination.copy()
+    source = countWords(f"{FILE_PATH}/{test_file_2}")
+    mergeResults(destination, source)
+
+    assert len(destination) < len(source) + len(destination_copy)
+    for word in destination:
+        if word in destination_copy.keys() and word not in source.keys():
+            # if word is in destination keys make sure the amount in the 
+            # result matches the amount in the destination_copy
+            assert destination[word] == destination_copy[word]
+            
+        if word in source.keys() and word not in destination_copy.keys():
+            # if word is in destination keys make sure the amount in the 
+            # result matches the amount in the destination_copy
+            assert destination[word] == source[word]
+        
+        if word in destination_copy.keys() and word in source.keys():
+            # if word is shared by the source and destination make sure the
+            # amount in the result is equal to the number of occurances in each
+            assert destination[word] == source[word] + destination_copy[word]
+
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed deep equality merge comparison test in {elapsed_time:.5f} seconds")
+
+def test_merge_large_files_results():
+    """
+    Test that merging large files doesn't cause any issues
+    """
+    test_file_1 = "500_words.txt"
+    test_file_2 = "large_list.txt"
+    start_time = time.time()
+    destination = countWords(f"{FILE_PATH}/{test_file_1}")
+    destination_length_before_merge = len(destination)
+    source = countWords(f"{FILE_PATH}/{test_file_2}")
+    mergeResults(destination, source)
+    assert len(destination) < len(source) + destination_length_before_merge
+    elapsed_time = time.time() - start_time
+    logger.log(f"Completed merge different results test in {elapsed_time:.5f} seconds")

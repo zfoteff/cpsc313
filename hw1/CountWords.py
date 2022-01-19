@@ -47,9 +47,11 @@ def countWords(file_name):
     start_time = time.time()
     for word in words:
         if word not in STOP_WORDS:
-            if word not in word_list.keys(): 
+            if word not in word_list.keys():
+                #   Create new dictionary entry for unencountered word
                 word_list[word] = 1
             else:
+                #   Incriment dictionary entry by one for encountered word
                 word_list[word] = word_list[word] + 1
 
     #   Kill timing and close file
@@ -58,7 +60,24 @@ def countWords(file_name):
     
     logger.log(f"\n\tFile: {file_name}\n\tElapsed Time: {elapsed_time:.5f}\n\tUnique words: {len(word_list.keys())}\n\tTotal words: {sum(word_list.values())}")
     return word_list
+
+def mergeResults(wordlist_1={}, wordlist_2={}):
+    """
+    Merge the results of counting words into one dictionary for compiling final results
+
+    Args:
+        wordlist_1 (dict): Destination dictionary for source dictionary to merge its results into
+        wordlist_2 (dict): Source dictionary to be merged into destination dictionary
+    """
     
+    for word in wordlist_2:
+        if word in wordlist_1.keys():
+            wordlist_1[word] = wordlist_1[word] + wordlist_2[word]
+        else:
+            wordlist_1[word] = wordlist_2[word]
+            
+        
+
 def main(*args, **kwargs):
     """ 
     Main method to get files from import or command line args. Iterates through 
@@ -68,7 +87,7 @@ def main(*args, **kwargs):
     
     #   Start timer
     start_time = time.time()
-    if args != ():
+    if args:
         #   Get filenames from command line arguments and count the words in them
         inputtedFiles = sys.argv[1:]
         for filepath in inputtedFiles:
@@ -80,7 +99,7 @@ def main(*args, **kwargs):
         directory_files = os.listdir(os.getcwd()+FILE_PATH)
         for filename in directory_files:
             #   Merge resuling dict with existing
-            total_words.update(countWords(os.getcwd()+FILE_PATH+filename))
+            mergeResults(total_words, countWords(os.getcwd()+FILE_PATH+filename))
             
     #   Report final timing and results
     elapsed_time = time.time() - start_time;
