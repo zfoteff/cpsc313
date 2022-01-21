@@ -10,7 +10,7 @@ __author__ = 'Zac Foteff'
 
 FILEPATH = "word_lists"
 
-logger = Logger('Unittest', 'hw2')
+logger = Logger('hw2Unittest', 'hw2')
 
 def test_empty_file():
     assert 0 == 0
