@@ -3,7 +3,7 @@
 
 #   Add other count characters instance to the python path so it can be imported
 import sys
-sys.path.insert(0, "C:\\Users\\Zac\\GitHub\\cpsc313\\hw1")
+sys.path.append("C:\\Users\\Zac\\GitHub\\cpsc313\\hw1\\")
 
 import time
 import CountWords

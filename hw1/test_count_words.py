@@ -3,6 +3,8 @@
 
 __version__ = '1.3'
 __author__ = 'Zac Foteff'
+import sys
+sys.path.insert(0, "C:\\Users\\Zac\\GitHub\\cpsc313\hw1\\CountWords.py")
 
 import time
 from Logger import Logger

@@ -27,10 +27,13 @@ def findWords(filename:str) -> list:
     """
     with open(f"{filename}", "r") as current_file:
         start_time = time.perf_counter()
-        words = current_file.read().upper().rstrip().replace("\n", " ").split(" ")
-        word_list = []
+        words = current_file.read()
         
-        # Append each word to the list with the letter one, assuming that it is not in STOP_WORDS
+        if words == '':
+            return []
+        
+        words = words.rstrip().replace("\n", " ").split(" ")
+        word_list = []
         [(word_list.append([word, 1]) if word not in STOP_WORDS else '') for word in words]
         elapsed_time = time.perf_counter() - start_time
         logger.log(f"\n\tFile: {filename}\n\tElapsed Time: {elapsed_time:.5f}\n\tNumber of words found: {len(word_list)}")
