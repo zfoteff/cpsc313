@@ -95,7 +95,6 @@ def main(*args, **kwargs):
             
     else: 
         #   Get files from wordlist directory and count the words in them
-        print("Running all files in wordlist directory")
         directory_files = os.listdir(os.getcwd()+FILE_PATH)
         for filename in directory_files:
             #   Merge resuling dict with existing
