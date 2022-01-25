@@ -76,7 +76,11 @@ def mergeResults(wordlist_1={}, wordlist_2={}):
         else:
             wordlist_1[word] = wordlist_2[word]
             
-        
+def countWordsForFile(filename:str) -> int:
+    total_words = {}
+    mergeResults(total_words, countWords(filename))
+    return sum(total_words.values())
+    
 
 def main(*args, **kwargs):
     """ 

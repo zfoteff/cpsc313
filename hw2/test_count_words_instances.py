@@ -6,7 +6,7 @@ import sys
 sys.path.append("C:\\Users\\Zac\\GitHub\\cpsc313\\hw1\\")
 
 import time
-import CountWords
+from CountWords import countWordsForFile
 from basicMR import SimpleMapReduce
 from mr_count_words import countWords, findWords
 from Logger import Logger
