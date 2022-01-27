@@ -5,7 +5,7 @@ Module for creating a user defined number of words that is generated from a seed
 from random import randint
 import sys
 
-def createFile(seed: str, writefile="out.txt", size=50, mode=0) -> None:
+def createFile(seed: str, writefile="out.txt", size=50, mode=0):
     """
     Creates random strings from inputted seed string
 
@@ -50,7 +50,7 @@ def main(**args):
         inputtedMode = int(input("Enter mode to run\n\t[0]: Generate number of strings\n\t[1]: Generate number of bytes\n: "))
         inputtedSize = int(input("Enter size of file: "))
         createFile(seedCorpus, 'out.txt', inputtedSize, inputtedMode)
-        print("Completes. Results available in ./out.txt")
+        print("Complete. Results available in ./out.txt")
 
 if __name__ == '__main__':
     main()

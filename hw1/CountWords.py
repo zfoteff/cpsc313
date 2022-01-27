@@ -35,7 +35,7 @@ def countWords(file_name):
     
     words = file.read()
     if words == '':
-        """ If words is empty, return an empty directory """
+        # If words is empty, return an empty directory
         return {}
     
     #   Convert words to uppercase and split the string into a list of Strings,

@@ -1,5 +1,4 @@
 import time
-import sys
 from random import randint
 from mr_count_words import countWords
 from Logger import Logger
