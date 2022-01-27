@@ -41,7 +41,7 @@ EXPECTED_DENSITY = {
     }
 }
 
-def getDictSum(word_list) -> int:
+def getDictSum(word_list):
     """ Get sum of all words in the word list dictionary
 
     Args:

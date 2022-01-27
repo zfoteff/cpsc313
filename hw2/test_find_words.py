@@ -16,6 +16,14 @@ EXPECTED_OUTPUT = {
     'large_list.txt': 370103
 }
 
+def test_returns_list():
+    test_file = '500_words.txt'
+    start_time = time.perf_counter()
+    word_list = findWords(f"{WORDLIST_FILEPATH}{test_file}")
+    assert type(word_list) == list
+    elapsed_time = time.perf_counter() - start_time
+    logger.log(f"Completed assert returns list in {elapsed_time}")
+
 def test_empty_file():
     test_file = 'empty.txt'
     start_time = time.perf_counter()

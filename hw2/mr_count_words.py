@@ -14,7 +14,7 @@ STOP_WORDS = [
 
 logger = Logger('Main', 'hw2')
 
-def findWords(filename:str) -> list:
+def findWords(filename:str):
     """
     Find return a list of iterables with all the words in a given file
 
@@ -68,7 +68,7 @@ def main(*args):
     else:
         word_list_directory = os.listdir(os.getcwd()+WORDLIST_FILEPATH)
         for file in word_list_directory:
-            total_wordcount += countWords(findWords(word_list_directory+file))
+            total_wordcount += countWords(findWords(os.getcwd()+WORDLIST_FILEPATH+file))
             #map_reduce = SimpleMapReduce(countWords, findWords, 4)
             file_count += 1
     
