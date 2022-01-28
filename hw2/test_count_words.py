@@ -1,3 +1,7 @@
+"""
+countWords functional tests
+"""
+
 import time
 from random import randint
 from mr_count_words import countWords
@@ -5,44 +9,48 @@ from Logger import Logger
 
 logger = Logger("CountWordFuncTest", "hw2")
 
-def test_returns_int():
-    data = []
+def test_returns_tuple():
+    """
+    Assert countWords method returns a tuple
+    """
+    test_data = ('a', [1])
     start_time = time.perf_counter()
-    assert type(countWords(data)) == int
+    assert type(countWords(test_data)) == tuple
     elapsed_time = time.perf_counter() - start_time
-    logger.log(f"Completed assert returns int test in {elapsed_time:.5f} seconds")
-
-def test_empty_list():
-    data = []
-    start_time = time.perf_counter()
-    word_count = countWords(data)
-    assert word_count == 0
-    elapsed_time = time.perf_counter() - start_time
-    logger.log(f"Completed empty list test in {elapsed_time:.5f} seconds")
+    logger.log(f"Completed assert returns dictionary test in {elapsed_time:.5f} seconds.")
     
-def test_single_element_list():
-    data = [['a', 1]]
+def test_single_element():
+    """
+    Assert countWords method functions as normal with a single element
+    """
+    test_data = ('a', [1])
     start_time = time.perf_counter()
-    word_count = countWords(data)
-    assert word_count == 1
+    word_sums = countWords(test_data)
+    assert word_sums == ('a', 1)
     elapsed_time = time.perf_counter() - start_time
-    logger.log(f"Completed single element list test in {elapsed_time:.5f} seconds")
+    logger.log(f"Completed single element list test in {elapsed_time:.5f} seconds. Results: {word_sums}")
     
-def test_normal_list():
-    data = [
-        ['a', 1], ['b', 1], ['c', 1], ['d', 1], ['e', 1], ['f', 1], ['g', 1],
-        ['h', 1], ['i', 1], ['j', 1], ['k', 1], ['l', 1], ['m', 1], ['n', 1]
-    ]
+def test_large_iterable():
+    """
+    Assert countWords method functions as normal with a large iterable list
+    """
+    test_data = ('a', [1,1,1,1,1,1,1,1,1])
     start_time = time.perf_counter()
-    word_count = countWords(data)
-    assert word_count == 14
+    word_sums = countWords(test_data)
+    assert word_sums == ('a', 9)
     elapsed_time = time.perf_counter() - start_time
-    logger.log(f"Completed standard list test in {elapsed_time:.5f} seconds")
+    logger.log(f"Completed large iterables mixed with small iterables test in {elapsed_time:.5f} seconds. Results: {word_sums}")
     
-def test_duplicate_elements():
-    data = [['a', 1], ['a', 1], ['a', 1], ['a', 1], ['a', 1], ['a', 1], ['a', 1]]
+def test_random_iterable():
+    """
+    Assert countWords method functions as normal with a randomly large iterable
+    """
+    range_lower_bound = randint(10, 100)
+    range_upper_bound = randint(range_lower_bound, 255)
+    random_iterable = [1 for generate_value in range(range_lower_bound, range_upper_bound)]
+    test_data = ('a', random_iterable)
     start_time = time.perf_counter()
-    word_count = countWords(data)
-    assert word_count == 7
+    word_sums = countWords(test_data)
+    assert word_sums[1] == len(random_iterable)
     elapsed_time = time.perf_counter() - start_time
-    logger.log(f"Completed duplicate elements test in {elapsed_time:.5f} seconds")
+    logger.log(f"Completed random iterable test in {elapsed_time:.5f} seconds. Results: {word_sums}")

@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import string
 from basicMR import SimpleMapReduce
 from Logger import Logger
 
@@ -14,9 +15,26 @@ STOP_WORDS = [
 
 logger = Logger('Main', 'hw2')
 
+def sumResultWordcount(result_list):
+    """
+    Helper method to iterate through list of tuples and get a sum of all words
+
+    Args:
+        result_list (list): iterable list of tuples populated with words and
+        their corresponding wordcounts
+    Return:
+        int: total wordcount of the list
+    """
+    total_wordcount = 0
+    for word_data in result_list:
+        total_wordcount += word_data[1]
+    return total_wordcount
+
 def findWords(filename:str):
     """
-    Find return a list of iterables with all the words in a given file
+    Find return a list of iterables with all the words in a given file. Should read all words
+    into a string. Then the string should convert all words to uppercase, remove all punctuation,
+    and strip any trailing spaces that may exist
 
     Args:
         filename (str): File to iterate over
@@ -25,55 +43,45 @@ def findWords(filename:str):
         list: iterable list of words for reduce function
     """
     with open(f"{filename}", "r") as current_file:
-        start_time = time.perf_counter()
         words = current_file.read()
-        
         if words == '':
             return []
         
-        words = words.rstrip().replace("\n", " ").split(" ")
-        word_list = []
-        [(word_list.append([word, 1]) if word not in STOP_WORDS else '') for word in words]
-        elapsed_time = time.perf_counter() - start_time
-        logger.log(f"Find words method\n\tFile: {filename}\n\tElapsed Time: {elapsed_time:.5f}\n\tNumber of words found: {len(word_list)}")
+        words = words.rstrip().upper().replace("\n", " ").translate(str.maketrans('', '', string.punctuation)).split(" ")
+        word_list = [(word, 1) for word in words if word not in STOP_WORDS]
         return word_list
             
-def countWords(item:list):
-    start_time = time.perf_counter()
-    word_list = {}
-    for word, amount in item:
-        if word in word_list:
-            word_list[word] += amount
-        else:
-            word_list[word] = amount
-    word_count = sum(word_list.values())
-    elapsed_time = time.perf_counter() - start_time
-    logger.log(f"Count words method\n\tElapsed Time: {elapsed_time:.5f}\n\tNumber of words found: {word_count}")
-    return word_count
+def countWords(item):
+    """
+    Iterate through the list of words in a file, sum the words, and return the count
+
+    Args:
+        item (tuple): Array of tuples with word and an iterable of their counts in the files
+
+    Returns:
+        tuple: All counted words and their corresponding sums
+    """
+    if item == []:
+        return ()
+    result_word = (item[0], sum(item[1]))
+    return result_word
 
 def main(*args):
-    """
-    Main function for countwords program
-    """
-    file_count = 0
     total_wordcount = 0
     start_time = time.perf_counter()
+    
     if args:
-        #   get filenames from command line args
         inputted_files = sys.argv[1:]
         for filepath in inputted_files:
-            countWords(findWords(filepath))
-            file_count += 1
-            
+            total_wordcount += countWords(findWords(filepath))
     else:
-        word_list_directory = os.listdir(os.getcwd()+WORDLIST_FILEPATH)
-        for file in word_list_directory:
-            total_wordcount += countWords(findWords(os.getcwd()+WORDLIST_FILEPATH+file))
-            #map_reduce = SimpleMapReduce(countWords, findWords, 4)
-            file_count += 1
+        word_list_directory = os.listdir(os.getcwd()+"\\word_lists\\prod\\")
+        files = [os.getcwd()+WORDLIST_FILEPATH+file for file in word_list_directory]
+        reduce = SimpleMapReduce(findWords, countWords)
+        total_wordcount += sumResultWordcount(reduce(files))
     
     elapsed_time = time.perf_counter() - start_time
-    logger.log(f"Completed word count of {file_count} files in {elapsed_time:.5f} | Result: {total_wordcount}")
+    logger.log(f"Completed word count in {elapsed_time:.5f} seconds | Result: {total_wordcount}")
 
 if __name__ == "__main__":
     main()

@@ -7,7 +7,7 @@ import logging as log
 
 LOG_DIR = str(os.getcwd())+"\\logs\\"
 
-def log_setup(logger_name, log_file, mode='w') -> log.Logger:
+def log_setup(logger_name, log_file, mode='w'):
     """
     Configure a new logger and return the new instance to the user
 
@@ -37,7 +37,7 @@ class Logger():
     """
     Logger object that allows a user to quickly define a new instance and log results to the file
     """
-    def __init__(self, log="debug", assignment="none") -> None:
+    def __init__(self, log="debug", assignment="none"):
         """
         Constructor
 
@@ -47,9 +47,18 @@ class Logger():
         """
         self.log_obj = log_setup(f"{assignment}{log}", LOG_DIR+f"{assignment}{log}.log")
         
-    def log(self, logStr) -> None:
+    def log(self, logStr):
         """
-        Log a string to the specified log file
+        Log a debug string to the specified log file
+
+        Args:
+            logStr (str): String to add to logfile
+        """
+        self.log_obj.debug(logStr)
+        
+    def info(self, logStr):
+        """
+        Log an info string to the specified log file
 
         Args:
             logStr (str): String to add to logfile

@@ -1,3 +1,7 @@
+"""
+findWords functional tests
+"""
+
 import requests
 import time
 import sys
@@ -13,10 +17,13 @@ EXPECTED_OUTPUT = {
     'empty.txt': 0,
     'single_word.txt': 1,
     '500_words.txt': 500,
-    'large_list.txt': 370103
+    'large_list.txt': 370085
 }
 
 def test_returns_list():
+    """
+    Assert findWords method returns a list
+    """
     test_file = '500_words.txt'
     start_time = time.perf_counter()
     word_list = findWords(f"{WORDLIST_FILEPATH}{test_file}")
@@ -25,6 +32,9 @@ def test_returns_list():
     logger.log(f"Completed assert returns list in {elapsed_time}")
 
 def test_empty_file():
+    """
+    Assert findWords method handles empty files properly
+    """
     test_file = 'empty.txt'
     start_time = time.perf_counter()
     word_list = findWords(f"{WORDLIST_FILEPATH}{test_file}")
@@ -33,6 +43,9 @@ def test_empty_file():
     logger.log(f"Completed empty file test in {elapsed_time:.5f} seconds")
     
 def test_single_word():
+    """
+    Assert findWords method functions properly when it encounters a single word
+    """
     test_file = 'single_word.txt'
     start_time = time.perf_counter()
     word_list = findWords(f"{WORDLIST_FILEPATH}{test_file}")
@@ -41,6 +54,9 @@ def test_single_word():
     logger.log(f"Completed single word test in {elapsed_time:.5f} seconds")
     
 def test_500_words():
+    """
+    Assert findWords method functions properly when it encounters a known amount of words
+    """
     test_file = '500_words.txt'
     start_time = time.perf_counter()
     word_list = findWords(f"{WORDLIST_FILEPATH}{test_file}")
@@ -49,6 +65,9 @@ def test_500_words():
     logger.log(f"Completed 500 word test in {elapsed_time:.5f} seconds")
     
 def test_large_file():
+    """
+    Assert findWords method functions properly with large files
+    """
     test_file = 'large_list.txt'
     start_time = time.perf_counter()
     word_list = findWords(f"{WORDLIST_FILEPATH}{test_file}")
@@ -56,13 +75,18 @@ def test_large_file():
     elapsed_time = time.perf_counter() - start_time
     logger.log(f"Completed large file test in {elapsed_time:.5f} seconds")
     
-#   Not working
 def test_random_file_size():
-    filename = 'randomly_generated.txt'
-    num_words = randint(100, 1000)
+    """
+    Assert findWords method functions properly when it is given a large, random word file
+    """
+    test_file = 'randomly_generated.txt'
+    num_words = randint(50, 200)
     res = requests.get(f"{RAND_WORDS_API_URL}word?number={num_words}")
-    with open(f"{WORDLIST_FILEPATH}{filename}", "w") as current_file:
-        [current_file.write(word) for word in list(res.text)]
+    with open(f"{WORDLIST_FILEPATH}{test_file}", "w") as current_file:
+        [current_file.write(word.replace("[", '').replace("]", '').replace("\"", '').replace(",", " ")) for word in list(res.text)]
     
-    logger.log(f"{RAND_WORDS_API_URL}word?number={num_words}")
-    logger.log(res.json)
+    start_time = time.perf_counter()
+    word_list = findWords(f"{WORDLIST_FILEPATH}{test_file}")
+    assert len(word_list) == num_words
+    elapsed_time = time.perf_counter() - start_time
+    logger.log(f"Completed large file test in {elapsed_time:.5f} seconds")
