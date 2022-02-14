@@ -47,14 +47,14 @@ class Logger():
         """
         self.log_obj = log_setup(f"{key}", LOG_DIR+f"{key}.log")
         
-    def __call__(self, log_msg):
+    def __call__(self, logStr):
         """
         Call the object to have a message immidiately logged to the debug output
 
         Args:
-            log_msg (str): Message to add to the logfile
+            logStr (str): Message to add to the logfile
         """
-        
+        self.log_obj.info(logStr)
         
     def log(self, logStr):
         """

@@ -13,6 +13,11 @@ To run:
 python -m uvicorn p2pchat:app --reload
 ```
 
+Docker Image for local testing
+```bash
+docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```
+
 Messaging server running rabbitmq
 cps-devops  
 Connection information forthcoming
