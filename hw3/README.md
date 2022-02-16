@@ -10,7 +10,7 @@ point-to-point/Scripts/Activate.ps1
 To run:
 
 ```bash
-python -m uvicorn p2pchat:app --reload
+python -m uvicorn mess_chat:app --reload
 ```
 
 Docker Image for local testing
