@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Zac\GitHub\cpsc313\lab1\point-to-point
+set VIRTUAL_ENV=C:\Users\Zac\GitHub\cpsc313\hw3\point-to-point
 
 if not defined PROMPT set PROMPT=$P$G
 

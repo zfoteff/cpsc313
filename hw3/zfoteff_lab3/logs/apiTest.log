@@ -1,0 +1,4 @@
+[2022-02-20 20:21:23,800] Completed successfuly connection test in 2.04481
+[2022-02-20 20:21:25,837] Completed GET root test in 2.0272902999995495
+[2022-02-20 20:21:27,874] Completed send message route test in 2.03513
+[2022-02-20 20:21:29,976] Completed retrieve messages route in 2.10044
