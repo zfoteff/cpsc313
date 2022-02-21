@@ -1,0 +1,148 @@
+[2022-02-20 20:18:15,174] [-+-] Connected to RMQ server
+[2022-02-20 20:18:17,704] [-+-] Connected to RMQ server
+[2022-02-20 20:18:20,648] [-+-] Connected to RMQ server
+[2022-02-20 20:18:20,713] [-X-] Disconnected from RMQ server
+[2022-02-20 20:18:23,261] [-+-] Connected to RMQ server
+[2022-02-20 20:18:23,262] [+] Published messsage to queue general
+[2022-02-20 20:18:23,337] [-X-] Disconnected from RMQ server
+[2022-02-20 20:18:27,225] [-+-] Connected to RMQ server
+[2022-02-20 20:18:27,226] [+] Published messsage to queue general
+[2022-02-20 20:18:27,226] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:18:27,257] [-] Consumed message: b't5'
+[2022-02-20 20:18:27,288] [-] Consumed message: b't6'
+[2022-02-20 20:18:27,322] [-] Consumed message: b't7'
+[2022-02-20 20:18:27,357] [-] Consumed message: b't8'
+[2022-02-20 20:18:27,396] [-] Consumed message: b't1'
+[2022-02-20 20:18:27,396] [*] Finished consuming messages
+[2022-02-20 20:19:18,350] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:19:18,380] [-] Consumed message: b't2'
+[2022-02-20 20:19:18,416] [-] Consumed message: b't3'
+[2022-02-20 20:19:18,448] [-] Consumed message: b't4'
+[2022-02-20 20:19:18,479] [-] Consumed message: b't5'
+[2022-02-20 20:19:18,519] [-] Consumed message: b't6'
+[2022-02-20 20:19:18,519] [*] Finished consuming messages
+[2022-02-20 20:19:20,662] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:19:20,702] [-] Consumed message: b't7'
+[2022-02-20 20:19:20,747] [-] Consumed message: b't8'
+[2022-02-20 20:19:20,777] [-] Consumed message: b'testing1'
+[2022-02-20 20:19:20,805] [-] Consumed message: b'testing1'
+[2022-02-20 20:19:20,852] [-] Consumed message: b'testing1'
+[2022-02-20 20:19:20,853] [*] Finished consuming messages
+[2022-02-20 20:19:22,123] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:19:22,153] [-] Consumed message: b'testing1'
+[2022-02-20 20:19:22,180] [-] Consumed message: b'test produce single message'
+[2022-02-20 20:19:22,213] [-] Consumed message: b'Do I exist?'
+[2022-02-20 20:19:22,243] [-] Consumed message: b't1'
+[2022-02-20 20:19:22,277] [-] Consumed message: b't2'
+[2022-02-20 20:19:22,277] [*] Finished consuming messages
+[2022-02-20 20:19:22,948] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:19:22,987] [-] Consumed message: b't3'
+[2022-02-20 20:19:23,015] [-] Consumed message: b't4'
+[2022-02-20 20:19:23,048] [-] Consumed message: b't5'
+[2022-02-20 20:19:23,077] [-] Consumed message: b't6'
+[2022-02-20 20:19:23,126] [-] Consumed message: b't7'
+[2022-02-20 20:19:23,127] [*] Finished consuming messages
+[2022-02-20 20:19:23,765] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:19:23,804] [-] Consumed message: b't8'
+[2022-02-20 20:19:23,844] [-] Consumed message: b't1'
+[2022-02-20 20:19:23,874] [-] Consumed message: b't2'
+[2022-02-20 20:19:23,905] [-] Consumed message: b't3'
+[2022-02-20 20:19:23,937] [-] Consumed message: b't4'
+[2022-02-20 20:19:23,937] [*] Finished consuming messages
+[2022-02-20 20:19:48,548] [-+-] Connected to RMQ server
+[2022-02-20 20:19:57,143] [-+-] Connected to RMQ server
+[2022-02-20 20:20:00,331] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:20:00,366] [-] Consumed message: b't5'
+[2022-02-20 20:20:00,400] [-] Consumed message: b't6'
+[2022-02-20 20:20:00,434] [-] Consumed message: b't7'
+[2022-02-20 20:20:00,466] [-] Consumed message: b't8'
+[2022-02-20 20:20:00,505] [-] Consumed message: b'test produce single message'
+[2022-02-20 20:20:00,549] [-] Consumed message: b'Do I exist?'
+[2022-02-20 20:20:00,579] [-] Consumed all 6 available messages in the queue
+[2022-02-20 20:20:00,579] [*] Finished consuming messages
+[2022-02-20 20:20:02,541] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:20:02,570] [-] Consumed all 0 available messages in the queue
+[2022-02-20 20:20:02,570] [*] Finished consuming messages
+[2022-02-20 20:20:52,442] [-+-] Connected to RMQ server
+[2022-02-20 20:20:52,524] [-X-] Disconnected from RMQ server
+[2022-02-20 20:20:52,738] [-+-] Connected to RMQ server
+[2022-02-20 20:20:52,739] [+] Published messsage to queue general
+[2022-02-20 20:20:52,810] [-X-] Disconnected from RMQ server
+[2022-02-20 20:20:53,021] [-+-] Connected to RMQ server
+[2022-02-20 20:20:53,021] [+] Published messsage to queue general
+[2022-02-20 20:20:53,022] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:20:53,056] [-] Consumed message: b'test produce single message'
+[2022-02-20 20:20:53,088] [-] Consumed message: b'Do I exist?'
+[2022-02-20 20:20:53,117] [-] Consumed all 2 available messages in the queue
+[2022-02-20 20:20:53,118] [*] Finished consuming messages
+[2022-02-20 20:20:53,193] [-X-] Disconnected from RMQ server
+[2022-02-20 20:20:53,435] [-+-] Connected to RMQ server
+[2022-02-20 20:20:53,435] [+] Published messsage to queue general
+[2022-02-20 20:20:53,435] [+] Published messsage to queue general
+[2022-02-20 20:20:53,436] [+] Published messsage to queue general
+[2022-02-20 20:20:53,436] [+] Published messsage to queue general
+[2022-02-20 20:20:53,436] [+] Published messsage to queue general
+[2022-02-20 20:20:53,436] [+] Published messsage to queue general
+[2022-02-20 20:20:53,437] [+] Published messsage to queue general
+[2022-02-20 20:20:53,437] [+] Published messsage to queue general
+[2022-02-20 20:20:53,509] [-X-] Disconnected from RMQ server
+[2022-02-20 20:20:53,722] [-+-] Connected to RMQ server
+[2022-02-20 20:20:53,723] [+] Published messsage to queue general
+[2022-02-20 20:20:53,723] [+] Published messsage to queue general
+[2022-02-20 20:20:53,723] [+] Published messsage to queue general
+[2022-02-20 20:20:53,724] [+] Published messsage to queue general
+[2022-02-20 20:20:53,724] [+] Published messsage to queue general
+[2022-02-20 20:20:53,724] [+] Published messsage to queue general
+[2022-02-20 20:20:53,724] [+] Published messsage to queue general
+[2022-02-20 20:20:53,725] [+] Published messsage to queue general
+[2022-02-20 20:20:53,725] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:20:53,763] [-] Consumed message: b't1'
+[2022-02-20 20:20:53,861] [-] Consumed message: b't2'
+[2022-02-20 20:20:53,893] [-] Consumed message: b't3'
+[2022-02-20 20:20:53,924] [-] Consumed message: b't4'
+[2022-02-20 20:20:53,954] [-] Consumed message: b't5'
+[2022-02-20 20:20:53,984] [-] Consumed message: b't6'
+[2022-02-20 20:20:54,015] [-] Consumed message: b't7'
+[2022-02-20 20:20:54,045] [-] Consumed message: b't8'
+[2022-02-20 20:20:54,079] [-] Consumed message: b't1'
+[2022-02-20 20:20:54,131] [-] Consumed message: b't2'
+[2022-02-20 20:20:54,132] [*] Finished consuming messages
+[2022-02-20 20:20:54,194] [-X-] Disconnected from RMQ server
+[2022-02-20 20:20:54,407] [-+-] Connected to RMQ server
+[2022-02-20 20:20:54,468] [-X-] Disconnected from RMQ server
+[2022-02-20 20:20:54,680] [-+-] Connected to RMQ server
+[2022-02-20 20:20:54,680] [+] Published messsage to queue foteff
+[2022-02-20 20:20:54,751] [-X-] Disconnected from RMQ server
+[2022-02-20 20:20:54,960] [-+-] Connected to RMQ server
+[2022-02-20 20:20:54,961] [+] Published messsage to queue foteff
+[2022-02-20 20:20:54,961] [*] Started consuming messages all messages from queue 'foteff'
+[2022-02-20 20:20:54,991] [-] Consumed message: b'Test message for my private channel. Go Away!'
+[2022-02-20 20:20:55,020] [-] Consumed message: b'Test message for my private channel. Go Away!'
+[2022-02-20 20:20:55,054] [-] Consumed all 2 available messages in the queue
+[2022-02-20 20:20:55,054] [*] Finished consuming messages
+[2022-02-20 20:20:55,343] [-+-] Connected to RMQ server
+[2022-02-20 20:20:55,343] [+] Published messsage to queue foteff
+[2022-02-20 20:20:55,344] [+] Published messsage to queue foteff
+[2022-02-20 20:20:55,344] [+] Published messsage to queue foteff
+[2022-02-20 20:20:55,344] [+] Published messsage to queue foteff
+[2022-02-20 20:20:55,345] [+] Published messsage to queue foteff
+[2022-02-20 20:20:55,345] [+] Published messsage to queue foteff
+[2022-02-20 20:20:55,346] [+] Published messsage to queue foteff
+[2022-02-20 20:20:55,346] [+] Published messsage to queue foteff
+[2022-02-20 20:20:55,346] [*] Started consuming messages all messages from queue 'foteff'
+[2022-02-20 20:20:55,382] [-] Consumed message: b't1'
+[2022-02-20 20:20:55,411] [-] Consumed message: b't2'
+[2022-02-20 20:20:55,444] [-] Consumed message: b't3'
+[2022-02-20 20:20:55,472] [-] Consumed message: b't4'
+[2022-02-20 20:20:55,501] [-] Consumed message: b't5'
+[2022-02-20 20:20:55,541] [-] Consumed message: b't6'
+[2022-02-20 20:20:55,575] [-] Consumed message: b't7'
+[2022-02-20 20:20:55,605] [-] Consumed message: b't8'
+[2022-02-20 20:20:55,634] [-] Consumed all 8 available messages in the queue
+[2022-02-20 20:20:55,634] [*] Finished consuming messages
+[2022-02-20 20:20:55,699] [-X-] Disconnected from RMQ server
+[2022-02-20 20:21:27,872] [+] Published messsage to queue general
+[2022-02-20 20:21:29,911] [*] Started consuming messages all messages from queue 'general'
+[2022-02-20 20:21:29,944] [-] Consumed message: b'TEST MESSAGE FOR CONSUMPTION'
+[2022-02-20 20:21:29,973] [-] Consumed all 1 available messages in the queue
+[2022-02-20 20:21:29,974] [*] Finished consuming messages

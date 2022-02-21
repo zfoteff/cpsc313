@@ -1,0 +1,15 @@
+[2022-02-20 20:18:15,176] [-+-] Started chat app
+[2022-02-20 20:18:17,713] [-+-] Started chat app
+[2022-02-20 20:19:18,519] GET /messages/ -- result: {1: 't2', 2: 't3', 3: 't4', 4: 't5', 5: 't6'}
+[2022-02-20 20:19:20,853] GET /messages/ -- result: {1: 't7', 2: 't8', 3: 'testing1', 4: 'testing1', 5: 'testing1'}
+[2022-02-20 20:19:22,278] GET /messages/ -- result: {1: 'testing1', 2: 'test produce single message', 3: 'Do I exist?', 4: 't1', 5: 't2'}
+[2022-02-20 20:19:23,127] GET /messages/ -- result: {1: 't3', 2: 't4', 3: 't5', 4: 't6', 5: 't7'}
+[2022-02-20 20:19:23,938] GET /messages/ -- result: {1: 't8', 2: 't1', 3: 't2', 4: 't3', 5: 't4'}
+[2022-02-20 20:19:48,552] [-+-] Started chat app
+[2022-02-20 20:19:57,146] [-+-] Started chat app
+[2022-02-20 20:20:00,580] GET /messages/ -- result: {1: 't5', 2: 't6', 3: 't7', 4: 't8', 5: 'test produce single message', 6: 'Do I exist?'}
+[2022-02-20 20:20:02,570] GET /messages/ -- result: {}
+[2022-02-20 20:21:23,798] GET / -- result: Success
+[2022-02-20 20:21:25,835] GET / -- result: Success
+[2022-02-20 20:21:27,872] POST /send/ -- result: ENQUEUED
+[2022-02-20 20:21:29,974] GET /messages/ -- result: {1: 'TEST MESSAGE FOR CONSUMPTION'}

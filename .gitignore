@@ -6,9 +6,15 @@
 /hw1/.pytest_cache/
 /hw1/.vscode
 
-# HW1 gitignore
+# HW2 gitignore
 /hw2/logs/
 /hw2/__pycache__/
 /hw2/.pytest_cache/
 /hw2/.vscode
 /hw2/word_lists/
+
+# HW3 gitignore
+/hw3/logs/
+/hw3/__pycache__/
+/hw3/.pytest_cache/
+/hw3/.vscode

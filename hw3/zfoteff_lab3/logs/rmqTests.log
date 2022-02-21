@@ -1,0 +1,10 @@
+[2022-02-20 20:18:20,649] Completed connection test in 0.32374 seconds
+[2022-02-20 20:18:23,262] Completed produce single message test in 0.19964 seconds
+[2022-02-20 20:20:52,442] Completed connection test in 0.26498 seconds
+[2022-02-20 20:20:52,739] Completed produce single message test in 0.20620 seconds
+[2022-02-20 20:20:53,118] Completed consume single message test in 0.09650 seconds
+[2022-02-20 20:20:53,437] Completed produce multiple messages in 0.00225
+[2022-02-20 20:20:54,132] Completed consume multiple messages in 0.40969
+[2022-02-20 20:20:54,407] Completed connection test in 0.21142 seconds
+[2022-02-20 20:20:54,680] Completed connection test in 0.21092 seconds
+[2022-02-20 20:20:55,635] Completed connection test in 0.48696 seconds
