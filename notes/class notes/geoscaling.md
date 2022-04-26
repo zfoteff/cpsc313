@@ -20,7 +20,7 @@ B/w datacenters, communication is tricky for several reasons. Those same approac
 * Every datacenter has its own unique firewall that prevents applications from passing data to it w/out AUTHN
 * Direct connections via TCP would probably be blocked, it is easy to connect from inside but it is very hard to connect from outside
 
-## Why restict outgoing TCP
+## Why restrict outgoing TCP
 
 * Datacenter networks manage millions of ip addresses inside each single datacenter
 * None of these are unique, they are only unique to each datacenter or a private cloud
@@ -34,3 +34,6 @@ Geo-replication blocks code from connecting to itself
 * Sequential updating
 * Physical isolation
 * Data residency
+
+### Major types of storage
+Locally redundant storage (LRS): Synchronously copies data across Azure availability zones
